@@ -29,11 +29,11 @@ bool CMainFrameLayer::init()
 
 	//cache
 	//SpriteFrameCache::getInstance()->addSpriteFramesWithFile("texture/background.plist");
-	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("texture/door.plist");
-	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("texture/hero.plist");
-	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("texture/monster.plist");
-	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("texture/npc.plist");
-	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("texture/props.plist");
+	//SpriteFrameCache::getInstance()->addSpriteFramesWithFile("texture/door.plist");
+	//SpriteFrameCache::getInstance()->addSpriteFramesWithFile("texture/hero.plist");
+	//SpriteFrameCache::getInstance()->addSpriteFramesWithFile("texture/monster.plist");
+	//SpriteFrameCache::getInstance()->addSpriteFramesWithFile("texture/npc.plist");
+	//SpriteFrameCache::getInstance()->addSpriteFramesWithFile("texture/props.plist");
     
     Size visibleSize = Director::getInstance()->getVisibleSize();
     Point origin = Director::getInstance()->getVisibleOrigin();
@@ -59,13 +59,32 @@ bool CMainFrameLayer::init()
 	//ui::Widget* ui = GUIReader::getInstance()->widgetFromJsonFile("ui/mainFrameUI.json");
 	//this->addChild(ui);
 
-	////menu
-	//_menuLayer = CMenuLayer::create();
-	//if (_menuLayer == NULL)
-	//{
-	//	return false;
-	//}
-	//_menuLayer->setPosition(32, 32);
+	//hero
+	_heroInfoLayer = CHeroInfoLayer::create();
+	if (_heroInfoLayer == NULL)
+	{
+		return false;
+	}
+	_heroInfoLayer->setPosition(32, 224);
+	this->addChild(_heroInfoLayer);
+
+	//key
+	_keyInfoLayer = CKeyInfoLayer::create();
+	if (_keyInfoLayer == NULL)
+	{
+		return false;
+	}
+	_keyInfoLayer->setPosition(32, 128);
+	this->addChild(_keyInfoLayer);
+
+	//menu
+	_menuLayer = CMenuLayer::create();
+	if (_menuLayer == NULL)
+	{
+		return false;
+	}
+	_menuLayer->setPosition(32, 32);
+	this->addChild(_menuLayer);
 
  //   /////////////////////////////
  //   // 2. add a menu item with "X" image, which is clicked to quit the program
