@@ -2,6 +2,11 @@
 
 USING_NS_CC;
 
+CMenuLayer::CMenuLayer()
+	: _levelTitle(NULL)
+{
+}
+
 bool CMenuLayer::init()
 {
 	//super init first
@@ -29,5 +34,17 @@ bool CMenuLayer::init()
 		this->addChild(background);
 	}
 
+	_levelTitle = LabelTTF::create("序章", "Arial", 24);
+	if (_levelTitle != NULL)
+	{
+		_levelTitle->setPosition(Point(sz.width/2, sz.height - _levelTitle->getContentSize().height));
+		this->addChild(_levelTitle, 1);
+	}
+
 	return true;
+}
+
+void CMenuLayer::setCurLevel(int level)
+{
+
 }

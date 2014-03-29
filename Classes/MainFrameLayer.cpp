@@ -1,4 +1,4 @@
-#include "MainFrameLayer.h"
+﻿#include "MainFrameLayer.h"
 //#include "CocosGUI.h"
 //#include "cocostudio/CocoStudio.h"
 
@@ -28,12 +28,14 @@ bool CMainFrameLayer::init()
     }
 
 	//cache
+	Dictionary* dicString = Dictionary::createWithContentsOfFile("string.plist");
+
 	//SpriteFrameCache::getInstance()->addSpriteFramesWithFile("texture/background.plist");
-	//SpriteFrameCache::getInstance()->addSpriteFramesWithFile("texture/door.plist");
-	//SpriteFrameCache::getInstance()->addSpriteFramesWithFile("texture/hero.plist");
-	//SpriteFrameCache::getInstance()->addSpriteFramesWithFile("texture/monster.plist");
-	//SpriteFrameCache::getInstance()->addSpriteFramesWithFile("texture/npc.plist");
-	//SpriteFrameCache::getInstance()->addSpriteFramesWithFile("texture/props.plist");
+	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("texture/door.plist");
+	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("texture/hero.plist");
+	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("texture/monster.plist");
+	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("texture/npc.plist");
+	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("texture/props.plist");
     
     Size visibleSize = Director::getInstance()->getVisibleSize();
     Point origin = Director::getInstance()->getVisibleOrigin();

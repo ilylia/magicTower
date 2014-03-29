@@ -138,6 +138,7 @@
     <ClCompile Include="..\Classes\MainFrameLayer.cpp" />
     <ClCompile Include="..\Classes\MainGameScene.cpp" />
     <ClCompile Include="..\Classes\MenuLayer.cpp" />
+    <ClCompile Include="..\Classes\MultiLangMgr.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -148,6 +149,8 @@
     <ClInclude Include="..\Classes\MainFrameLayer.h" />
     <ClInclude Include="..\Classes\MainGameScene.h" />
     <ClInclude Include="..\Classes\MenuLayer.h" />
+    <ClInclude Include="..\Classes\MultiLangMgr.h" />
+    <ClInclude Include="..\Classes\stringdef.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="resource.h" />
   </ItemGroup>

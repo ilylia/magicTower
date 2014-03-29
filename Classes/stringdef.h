@@ -1,0 +1,14 @@
+#ifndef __STRING_DEFINE_H__
+#define __STRING_DEFINE_H__
+
+#define STR_HERO_LEEL 1001
+#define STR_NUM_UNIT 1002
+#define STR_HERO_LIFE 1003
+#define STR_HERO_ATK 1004
+#define STR_HERO_DEF 1005
+#define STR_HERO_MONEY 1006
+#define STR_HERO_EXP 1007
+
+#define STR_GAME_LEVEL 1101
+
+#endif __STRING_DEFINE_H__
