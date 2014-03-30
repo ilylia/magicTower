@@ -31,13 +31,27 @@ void CMultiLangMgr::destroyInstance()
 	} while(false);
 }
 
-bool CMultiLangMgr::initMultiLangWithFile(const std::string& pszPlist)
+bool CMultiLangMgr::initMultiLangWithFile(const string& pszPlist)
 {
 	CCASSERT(pszPlist.size()>0, "plist filename should not be nullptr");
 
-	std::string fullPath = FileUtils::getInstance()->fullPathForFilename(pszPlist);
-	ValueMap dict = FileUtils::getInstance()->getValueMapFromFile(fullPath);
+	string fullPath = FileUtils::getInstance()->fullPathForFilename(pszPlist);
+	ValueVector vtStr = FileUtils::getInstance()->getValueVectorFromFile(fullPath);
 
-	// TODO
+	//只取中文先
+	for (ValueVector::iterator itr = vtStr.begin(); itr != vtStr.end(); ++itr)
+	{
+		ValueMap& mapStr = itr->asValueMap();
+		int nID = mapStr["id"].asInt();
+		string str = mapStr["chs"].asString();
+		_strMap[nID] = str;
+	}
+
+	return true;
+}
+
+string CMultiLangMgr::getStr(int nID)
+{
+	return _strMap[nID];
 }
 

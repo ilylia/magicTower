@@ -1,4 +1,6 @@
 #include "MenuLayer.h"
+#include "MultiLangMgr.h"
+#include "stringdef.h"
 
 USING_NS_CC;
 
@@ -34,7 +36,8 @@ bool CMenuLayer::init()
 		this->addChild(background);
 	}
 
-	_levelTitle = LabelTTF::create("序章", "Arial", 24);
+	std::string str = CMultiLangMgr::getInstance()->getStr(STR_GAME_LEVEL);
+	_levelTitle = LabelTTF::create(str, "Arial", 24);
 	if (_levelTitle != NULL)
 	{
 		_levelTitle->setPosition(Point(sz.width/2, sz.height - _levelTitle->getContentSize().height));
@@ -46,5 +49,6 @@ bool CMenuLayer::init()
 
 void CMenuLayer::setCurLevel(int level)
 {
-
+	std::string str = CMultiLangMgr::getInstance()->getStr(STR_GAME_LEVEL + level);
+	_levelTitle->setString(str);
 }

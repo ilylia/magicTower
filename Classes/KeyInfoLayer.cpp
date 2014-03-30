@@ -1,4 +1,6 @@
 #include "KeyInfoLayer.h"
+#include "MultiLangMgr.h"
+#include "stringdef.h"
 
 USING_NS_CC;
 
@@ -36,6 +38,7 @@ bool CKeyInfoLayer::init()
 		this->addChild(background);
 	}
 
+	std::string str = CMultiLangMgr::getInstance()->getStr(STR_NUM_UNIT);
 	Sprite* keyYellow = Sprite::createWithSpriteFrameName("image 112.bmp");
 	if (keyYellow != NULL)
 	{
@@ -48,7 +51,7 @@ bool CKeyInfoLayer::init()
 		_numKeyYellow->setPosition(64, 80);
 		this->addChild(_numKeyYellow);
 	}
-	LabelTTF* label1 = LabelTTF::create("ge", "Arial", 24);
+	LabelTTF* label1 = LabelTTF::create(str, "Arial", 24);
 	if (label1 != NULL)
 	{
 		label1->setPosition(112, 80);
@@ -67,7 +70,7 @@ bool CKeyInfoLayer::init()
 		_numKeyBlue->setPosition(64, 48);
 		this->addChild(_numKeyBlue);
 	}
-	LabelTTF* label2 = LabelTTF::create("ge", "Arial", 24);
+	LabelTTF* label2 = LabelTTF::create(str, "Arial", 24);
 	if (label2 != NULL)
 	{
 		label2->setPosition(112, 48);
@@ -86,7 +89,7 @@ bool CKeyInfoLayer::init()
 		_numKeyRed->setPosition(64, 16);
 		this->addChild(_numKeyRed);
 	}
-	LabelTTF* label3 = LabelTTF::create("ge", "Arial", 24);
+	LabelTTF* label3 = LabelTTF::create(str, "Arial", 24);
 	if (label3 != NULL)
 	{
 		label3->setPosition(112, 16);

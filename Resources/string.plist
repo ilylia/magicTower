@@ -5,49 +5,65 @@
 	<dict>
 		<key>id</key>
 		<string>1001</string>
-		<key>info</key>
+		<key>eng</key>
+		<string>level</string>
+		<key>chs</key>
 		<string>级</string>
 	</dict>
 	<dict>
 		<key>id</key>
 		<string>1002</string>
-		<key>info</key>
+		<key>eng</key>
+		<string></string>
+		<key>chs</key>
 		<string>个</string>
 	</dict>
 	<dict>
 		<key>id</key>
 		<string>1003</string>
-		<key>info</key>
+		<key>eng</key>
+		<string>life</string>
+		<key>chs</key>
 		<string>生命</string>
 	</dict>
 	<dict>
 		<key>id</key>
 		<string>1004</string>
-		<key>info</key>
+		<key>eng</key>
+		<string>atk</string>
+		<key>chs</key>
 		<string>攻击</string>
 	</dict>
 	<dict>
 		<key>id</key>
 		<string>1005</string>
-		<key>info</key>
+		<key>eng</key>
+		<string>def</string>
+		<key>chs</key>
 		<string>防御</string>
 	</dict>
 	<dict>
 		<key>id</key>
 		<string>1006</string>
-		<key>info</key>
+		<key>eng</key>
+		<string>money</string>
+		<key>chs</key>
 		<string>金币</string>
 	</dict>
 	<dict>
 		<key>id</key>
 		<string>1007</string>
-		<key>info</key>
+		<key>eng</key>
+		<string>exp</string>
+		<key>chs</key>
 		<string>经验</string>
 	</dict>
 	<dict>
 		<key>id</key>
 		<string>1101</string>
-		<key>info</key>
+		<key>eng</key>
+		<string>Begin</string>
+		<key>chs</key>
 		<string>序章</string>
 	</dict>
 </array>

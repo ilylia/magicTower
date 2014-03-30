@@ -28,8 +28,6 @@ bool CMainFrameLayer::init()
     }
 
 	//cache
-	Dictionary* dicString = Dictionary::createWithContentsOfFile("string.plist");
-
 	//SpriteFrameCache::getInstance()->addSpriteFramesWithFile("texture/background.plist");
 	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("texture/door.plist");
 	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("texture/hero.plist");
@@ -56,10 +54,6 @@ bool CMainFrameLayer::init()
 		_background->getTexture()->setTexParameters(params);
 		this->addChild(_background);
 	}
-
-	////ui
-	//ui::Widget* ui = GUIReader::getInstance()->widgetFromJsonFile("ui/mainFrameUI.json");
-	//this->addChild(ui);
 
 	//hero
 	_heroInfoLayer = CHeroInfoLayer::create();
@@ -88,48 +82,15 @@ bool CMainFrameLayer::init()
 	_menuLayer->setPosition(32, 32);
 	this->addChild(_menuLayer);
 
- //   /////////////////////////////
- //   // 2. add a menu item with "X" image, which is clicked to quit the program
- //   //    you may modify it.
+	//game
+	_gameLayer = CGameLayer::create();
+	if (_gameLayer == NULL)
+	{
+		return false;
+	}
+	_gameLayer->setPosition(192, 32);
+	this->addChild(_gameLayer);
 
- //   // add a "close" icon to exit the progress. it's an autorelease object
- //   auto closeItem = MenuItemImage::create(
- //                                          "CloseNormal.png",
- //                                          "CloseSelected.png",
- //                                          CC_CALLBACK_1(CMainFrameLayer::menuCloseCallback, this));
- //   
-	//closeItem->setPosition(Point(origin.x + visibleSize.width - closeItem->getContentSize().width/2 ,
- //                               origin.y + closeItem->getContentSize().height/2));
-
- //   // create menu, it's an autorelease object
- //   auto menu = Menu::create(closeItem, NULL);
- //   menu->setPosition(Point::ZERO);
- //   this->addChild(menu, 1);
-
- //   /////////////////////////////
- //   // 3. add your codes below...
-
- //   // add a label shows "Hello World"
- //   // create and initialize a label
- //   
- //   auto label = LabelTTF::create("Hello World", "Arial", 24);
- //   
- //   // position the label on the center of the screen
- //   label->setPosition(Point(origin.x + visibleSize.width/2,
- //                           origin.y + visibleSize.height - label->getContentSize().height));
-
- //   // add the label as a child to this layer
- //   this->addChild(label, 1);
-
- //   // add "CMainFrameLayer" splash screen"
- //   auto sprite = Sprite::create("CMainGameScene.png");
-
- //   // position the sprite on the center of the screen
- //   sprite->setPosition(Point(visibleSize.width/2 + origin.x, visibleSize.height/2 + origin.y));
-
- //   // add the sprite as a child to this layer
- //   this->addChild(sprite, 0);
-    
     return true;
 }
 

@@ -1,4 +1,6 @@
 #include "HeroInfoLayer.h"
+#include "MultiLangMgr.h"
+#include "stringdef.h"
 
 USING_NS_CC;
 
@@ -46,42 +48,48 @@ bool CHeroInfoLayer::init()
 		this->addChild(heroHead);
 	}
 
-	LabelTTF* labelLevel = LabelTTF::create("ji", "Arial", 20);
+	std::string str = CMultiLangMgr::getInstance()->getStr(STR_HERO_LEVEL);
+	LabelTTF* labelLevel = LabelTTF::create(str, "Arial", 20);
 	if (labelLevel != NULL)
 	{
 		labelLevel->setPosition(112, 144);
 		this->addChild(labelLevel);
 	}
 
-	LabelTTF* labelLife = LabelTTF::create("life", "Arial", 20);
+	str = CMultiLangMgr::getInstance()->getStr(STR_HERO_LIFE);
+	LabelTTF* labelLife = LabelTTF::create(str, "Arial", 20);
 	if (labelLife != NULL)
 	{
 		labelLife->setPosition(24, 108);
 		this->addChild(labelLife);
 	}
 
-	LabelTTF* labelAtk = LabelTTF::create("atk", "Arial", 20);
+	str = CMultiLangMgr::getInstance()->getStr(STR_HERO_ATK);
+	LabelTTF* labelAtk = LabelTTF::create(str, "Arial", 20);
 	if (labelAtk != NULL)
 	{
 		labelAtk->setPosition(24, 84);
 		this->addChild(labelAtk);
 	}
 
-	LabelTTF* labelDef = LabelTTF::create("def", "Arial", 20);
+	str = CMultiLangMgr::getInstance()->getStr(STR_HERO_DEF);
+	LabelTTF* labelDef = LabelTTF::create(str, "Arial", 20);
 	if (labelDef != NULL)
 	{
 		labelDef->setPosition(24, 60);
 		this->addChild(labelDef);
 	}
 
-	LabelTTF* labelMoney = LabelTTF::create("money", "Arial", 20);
+	str = CMultiLangMgr::getInstance()->getStr(STR_HERO_MONEY);
+	LabelTTF* labelMoney = LabelTTF::create(str, "Arial", 20);
 	if (labelMoney != NULL)
 	{
 		labelMoney->setPosition(24, 36);
 		this->addChild(labelMoney);
 	}
 
-	LabelTTF* labelExp = LabelTTF::create("exp", "Arial", 20);
+	str = CMultiLangMgr::getInstance()->getStr(STR_HERO_EXP);
+	LabelTTF* labelExp = LabelTTF::create(str, "Arial", 20);
 	if (labelExp != NULL)
 	{
 		labelExp->setPosition(24, 12);

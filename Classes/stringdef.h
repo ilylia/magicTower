@@ -1,7 +1,7 @@
 #ifndef __STRING_DEFINE_H__
 #define __STRING_DEFINE_H__
 
-#define STR_HERO_LEEL 1001
+#define STR_HERO_LEVEL 1001
 #define STR_NUM_UNIT 1002
 #define STR_HERO_LIFE 1003
 #define STR_HERO_ATK 1004
