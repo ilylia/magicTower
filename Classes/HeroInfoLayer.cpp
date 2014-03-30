@@ -41,7 +41,7 @@ bool CHeroInfoLayer::init()
 		this->addChild(background);
 	}
 
-	Sprite* heroHead = Sprite::createWithSpriteFrameName("down.bmp");
+	Sprite* heroHead = Sprite::createWithSpriteFrameName("mt_99.png");
 	if (heroHead != NULL)
 	{
 		heroHead->setPosition(16, 144);

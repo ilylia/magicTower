@@ -6,8 +6,10 @@
 class CGameLayer : public cocos2d::Layer
 {
 public:
-    virtual bool init();  
-    
+    virtual bool init();
+
+	void setLevel(int level);
+
     CREATE_FUNC(CGameLayer);
 };
 

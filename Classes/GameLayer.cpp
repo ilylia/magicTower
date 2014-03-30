@@ -1,4 +1,8 @@
 #include "GameLayer.h"
+#include "GameData.h"
+#include <iosfwd>
+
+using namespace std;
 
 USING_NS_CC;
 
@@ -12,26 +16,50 @@ bool CGameLayer::init()
 
 	Size sz(352, 352);
 	this->setContentSize(sz);
-    //Size visibleSize = Director::getInstance()->getVisibleSize();
-    //Point origin = Director::getInstance()->getVisibleOrigin();
-
-	Sprite* background = Sprite::create("texture/road.png");
-	if (background != NULL)
-	{
-		background->setPosition(sz.width / 2, sz.height / 2);
-		Rect reFull(0, 0, sz.width, sz.height);
-		background->setTextureRect(reFull);
-		Texture2D::TexParams params = {
-			GL_LINEAR,
-			GL_LINEAR,
-			GL_REPEAT,
-			GL_REPEAT
-		};
-		background->getTexture()->setTexParameters(params);
-		this->addChild(background);
-	}
-
     
     return true;
+}
+
+void CGameLayer::setLevel(int level)
+{
+	const int* gameData = CGameData::getInstance()->getData(level);
+	if (gameData == NULL)
+	{
+		return;
+	}
+	
+	stringstream ss;
+	for (int i=0; i<11; ++i)
+	{
+		for (int j=0; j<11; ++j)
+		{
+			//sprite id
+			int k = gameData[i*11+j];
+
+			ss << "mt_";
+			if (k < 10)
+			{
+				ss << "0" << k;
+			}
+			else if (k == 97 || k == 98)
+			{
+				ss << "00";
+			}
+			else
+			{
+				ss << k;
+			}
+			ss << ".png";
+			string spriteName = ss.str();
+			ss.str("");
+
+			Sprite* sp = Sprite::createWithSpriteFrameName(spriteName);
+			if (sp != NULL)
+			{
+				sp->setPosition(32*j + 16, 32*(10-i) + 16);
+				this->addChild(sp);
+			}
+		}
+	}
 }
 

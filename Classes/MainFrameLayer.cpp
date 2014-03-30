@@ -28,12 +28,13 @@ bool CMainFrameLayer::init()
     }
 
 	//cache
+	CCSpriteFrameCache::getInstance()->addSpriteFramesWithFile("texture/mt.plist");
 	//SpriteFrameCache::getInstance()->addSpriteFramesWithFile("texture/background.plist");
-	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("texture/door.plist");
-	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("texture/hero.plist");
-	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("texture/monster.plist");
-	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("texture/npc.plist");
-	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("texture/props.plist");
+	//SpriteFrameCache::getInstance()->addSpriteFramesWithFile("texture/door.plist");
+	//SpriteFrameCache::getInstance()->addSpriteFramesWithFile("texture/hero.plist");
+	//SpriteFrameCache::getInstance()->addSpriteFramesWithFile("texture/monster.plist");
+	//SpriteFrameCache::getInstance()->addSpriteFramesWithFile("texture/npc.plist");
+	//SpriteFrameCache::getInstance()->addSpriteFramesWithFile("texture/props.plist");
     
     Size visibleSize = Director::getInstance()->getVisibleSize();
     Point origin = Director::getInstance()->getVisibleOrigin();
@@ -90,6 +91,8 @@ bool CMainFrameLayer::init()
 	}
 	_gameLayer->setPosition(192, 32);
 	this->addChild(_gameLayer);
+
+	_gameLayer->setLevel(0);
 
     return true;
 }

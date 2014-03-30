@@ -39,7 +39,7 @@ bool CKeyInfoLayer::init()
 	}
 
 	std::string str = CMultiLangMgr::getInstance()->getStr(STR_NUM_UNIT);
-	Sprite* keyYellow = Sprite::createWithSpriteFrameName("image 112.bmp");
+	Sprite* keyYellow = Sprite::createWithSpriteFrameName("mt_06.png");
 	if (keyYellow != NULL)
 	{
 		keyYellow->setPosition(16, 80);
@@ -58,7 +58,7 @@ bool CKeyInfoLayer::init()
 		this->addChild(label1);
 	}
 
-	Sprite* keyBlue = Sprite::createWithSpriteFrameName("image 112.bmp");
+	Sprite* keyBlue = Sprite::createWithSpriteFrameName("mt_07.png");
 	if (keyBlue != NULL)
 	{
 		keyBlue->setPosition(16, 48);
@@ -77,7 +77,7 @@ bool CKeyInfoLayer::init()
 		this->addChild(label2);
 	}
 
-	Sprite* keyRed = Sprite::createWithSpriteFrameName("image 112.bmp");
+	Sprite* keyRed = Sprite::createWithSpriteFrameName("mt_08.png");
 	if (keyRed != NULL)
 	{
 		keyRed->setPosition(16, 16);
