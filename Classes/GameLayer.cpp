@@ -1,6 +1,7 @@
 #include "GameLayer.h"
 #include "GameData.h"
 #include <iosfwd>
+#include "MirrorAction.h"
 
 using namespace std;
 
@@ -27,6 +28,9 @@ void CGameLayer::setLevel(int level)
 	{
 		return;
 	}
+
+	//Texture2D* text = TextureCache::sharedTextureCache()->getTextureForKey();
+	//SpriteBatchNode* bgSprites = SpriteBatchNode::createWithTexture();
 	
 	stringstream ss;
 	for (int i=0; i<11; ++i)
@@ -59,6 +63,26 @@ void CGameLayer::setLevel(int level)
 				sp->setPosition(32*j + 16, 32*(10-i) + 16);
 				this->addChild(sp);
 			}
+
+			TSpriteType type = CGameData::getInstance()->getSpriteType(k);
+			if (type == ESpriteNpc || type == ESpriteMonster)
+			{
+				string spriteName1 = spriteName;
+				spriteName1.insert(spriteName1.length() - 4, "_1");
+				Animation* animation = Animation::create();
+				animation->setDelayPerUnit(0.2f);
+				animation->addSpriteFrame(SpriteFrameCache::getInstance()->getSpriteFrameByName(spriteName));
+				animation->addSpriteFrame(SpriteFrameCache::getInstance()->getSpriteFrameByName(spriteName1));
+				Animate* animate = Animate::create(animation);
+				sp->runAction(RepeatForever::create(animate));
+			}
+
+			if (k == 19 || k == 20)
+			{
+				Mirror* mir = Mirror::create(0.4f, 1);
+				sp->runAction(RepeatForever::create(mir));
+			}
+
 		}
 	}
 }

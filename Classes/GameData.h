@@ -1,6 +1,15 @@
 #ifndef __GAME_DATA_H__
 #define __GAME_DATA_H__
 
+
+enum TSpriteType
+{
+	ESpriteNpc,
+	ESpriteMonster,
+	ESpriteProps,
+	ESpriteOther,
+};
+
 class CGameData
 {
 public:
@@ -12,6 +21,8 @@ protected:
 
 public:
 	const int* getData(int level);
+
+	TSpriteType getSpriteType(int k);
 
 private:
 };

@@ -11,6 +11,7 @@ CMainFrameLayer::CMainFrameLayer()
 	, _heroInfoLayer(NULL)
 	, _keyInfoLayer(NULL)
 	, _menuLayer(NULL)
+	, _curLevel(0)
 {
 }
 
@@ -92,11 +93,34 @@ bool CMainFrameLayer::init()
 	_gameLayer->setPosition(192, 32);
 	this->addChild(_gameLayer);
 
-	_gameLayer->setLevel(0);
+	this->setKeyboardEnabled(true);
+
+	_gameLayer->setLevel(_curLevel);
 
     return true;
 }
 
+void CMainFrameLayer::onKeyPressed(EventKeyboard::KeyCode keyCode, Event* event)
+{
+	switch (keyCode)
+	{
+	case EventKeyboard::KeyCode::KEY_W:
+		++_curLevel;
+		_gameLayer->setLevel(_curLevel);
+		break;
+	case EventKeyboard::KeyCode::KEY_S:
+		--_curLevel;
+		_gameLayer->setLevel(_curLevel);
+		break;
+	default:
+		break;
+	}
+}
+
+void CMainFrameLayer::onKeyReleased(EventKeyboard::KeyCode keyCode, Event* event)
+{
+
+}
 
 void CMainFrameLayer::menuCloseCallback(Ref* pSender)
 {

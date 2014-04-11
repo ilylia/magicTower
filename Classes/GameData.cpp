@@ -459,3 +459,23 @@ const int* CGameData::getData(int level)
 
 	return (int*)g_gameMap[level];
 }
+
+TSpriteType CGameData::getSpriteType(int k)
+{
+	if (k >= 24 && k <= 28)
+	{
+		return ESpriteNpc;
+	}
+	else if (k >= 40 && k <= 70)
+	{
+		return ESpriteMonster;
+	}
+	else if ((k >= 6 && k<=12) || (k >= 30 && k <= 39) || (k >= 71 && k <= 80) || (k >= 201 && k <= 203))
+	{
+		return ESpriteProps;
+	}
+	else
+	{
+		return ESpriteOther;
+	}
+}
