@@ -2,6 +2,7 @@
 #define __HEROINFO_LAYER_H__
 
 #include "cocos2d.h"
+#include "GameData.h"
 
 class CHeroInfoLayer : public cocos2d::Layer
 {
@@ -9,6 +10,8 @@ public:
 	CHeroInfoLayer();
 
 	virtual bool init();  
+
+	void updateShow(THeroDataType type);
 
 	CREATE_FUNC(CHeroInfoLayer);
 

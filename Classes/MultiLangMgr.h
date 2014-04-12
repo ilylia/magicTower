@@ -15,7 +15,7 @@ protected:
 public:
     bool initMultiLangWithFile(const std::string& plist);
 
-	std::string getStr(int nID);
+	const std::string& getStr(int nID);
 
 private:
 	std::map<int, std::string> _strMap;

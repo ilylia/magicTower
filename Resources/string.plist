@@ -58,14 +58,34 @@
 		<key>chs</key>
 		<string>经验</string>
 	</dict>
-	<dict>
-		<key>id</key>
-		<string>1101</string>
-		<key>eng</key>
-		<string>Begin</string>
-		<key>chs</key>
-		<string>序章</string>
-	</dict>
+	<dict><key>id</key><string>1101</string><key>eng</key><string>Begin</string><key>chs</key><string>序  章</string></dict>
+	<dict><key>id</key><string>1102</string><key>eng</key><string>Begin</string><key>chs</key><string>第1层</string></dict>
+	<dict><key>id</key><string>1103</string><key>eng</key><string>Begin</string><key>chs</key><string>第2层</string></dict>
+	<dict><key>id</key><string>1104</string><key>eng</key><string>Begin</string><key>chs</key><string>第3层</string></dict>
+	<dict><key>id</key><string>1105</string><key>eng</key><string>Begin</string><key>chs</key><string>第4层</string></dict>
+	<dict><key>id</key><string>1106</string><key>eng</key><string>Begin</string><key>chs</key><string>第5层</string></dict>
+	<dict><key>id</key><string>1107</string><key>eng</key><string>Begin</string><key>chs</key><string>第6层</string></dict>
+	<dict><key>id</key><string>1108</string><key>eng</key><string>Begin</string><key>chs</key><string>第7层</string></dict>
+	<dict><key>id</key><string>1109</string><key>eng</key><string>Begin</string><key>chs</key><string>第8层</string></dict>
+	<dict><key>id</key><string>1110</string><key>eng</key><string>Begin</string><key>chs</key><string>第9层</string></dict>
+	<dict><key>id</key><string>1111</string><key>eng</key><string>Begin</string><key>chs</key><string>第10层</string></dict>
+	<dict><key>id</key><string>1112</string><key>eng</key><string>Begin</string><key>chs</key><string>第11层</string></dict>
+	<dict><key>id</key><string>1113</string><key>eng</key><string>Begin</string><key>chs</key><string>第12层</string></dict>
+	<dict><key>id</key><string>1114</string><key>eng</key><string>Begin</string><key>chs</key><string>第13层</string></dict>
+	<dict><key>id</key><string>1115</string><key>eng</key><string>Begin</string><key>chs</key><string>第14层</string></dict>
+	<dict><key>id</key><string>1116</string><key>eng</key><string>Begin</string><key>chs</key><string>第15层</string></dict>
+	<dict><key>id</key><string>1117</string><key>eng</key><string>Begin</string><key>chs</key><string>第16层</string></dict>
+	<dict><key>id</key><string>1118</string><key>eng</key><string>Begin</string><key>chs</key><string>第17层</string></dict>
+	<dict><key>id</key><string>1119</string><key>eng</key><string>Begin</string><key>chs</key><string>第18层</string></dict>
+	<dict><key>id</key><string>1120</string><key>eng</key><string>Begin</string><key>chs</key><string>第19层</string></dict>
+	<dict><key>id</key><string>1121</string><key>eng</key><string>Begin</string><key>chs</key><string>第20层</string></dict>
+	<dict><key>id</key><string>1122</string><key>eng</key><string>Begin</string><key>chs</key><string>第21层</string></dict>
+	<dict><key>id</key><string>1123</string><key>eng</key><string>Begin</string><key>chs</key><string>第22层</string></dict>
+	<dict><key>id</key><string>1124</string><key>eng</key><string>Begin</string><key>chs</key><string>第23层</string></dict>
+	<dict><key>id</key><string>1125</string><key>eng</key><string>Begin</string><key>chs</key><string>第23层</string></dict>
+	<dict><key>id</key><string>1126</string><key>eng</key><string>Begin</string><key>chs</key><string>第23层</string></dict>
+	<dict><key>id</key><string>1127</string><key>eng</key><string>Begin</string><key>chs</key><string>地下层</string></dict>
+
 	<dict><key>id</key><string>1201</string><key>eng</key><string></string><key>chs</key><string>绿头怪</string></dict>
 	<dict><key>id</key><string>1202</string><key>eng</key><string></string><key>chs</key><string>红头怪</string></dict>
 	<dict><key>id</key><string>1203</string><key>eng</key><string></string><key>chs</key><string>小蝙蝠</string></dict>

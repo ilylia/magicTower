@@ -1,6 +1,9 @@
 #include "HeroInfoLayer.h"
 #include "MultiLangMgr.h"
 #include "stringdef.h"
+#include <iosfwd>
+
+using namespace std;
 
 USING_NS_CC;
 
@@ -140,3 +143,38 @@ bool CHeroInfoLayer::init()
 
 	return true;
 }
+
+void CHeroInfoLayer::updateShow(THeroDataType type)
+{
+	stringstream ss;
+	switch (type)
+	{
+	case ELevel:
+		ss << CGameData::getHeroData()->level;
+		_heroLevel->setString(ss.str());
+		break;
+	case ELife:
+		ss << CGameData::getHeroData()->life;
+		_heroLife->setString(ss.str());
+		break;
+	case EATK:
+		ss << CGameData::getHeroData()->atk;
+		_heroAtk->setString(ss.str());
+		break;
+	case EDEF:
+		ss << CGameData::getHeroData()->def;
+		_heroDef->setString(ss.str());
+		break;
+	case EMoney:
+		ss << CGameData::getHeroData()->money;
+		_heroMoney->setString(ss.str());
+		break;
+	case EExp:
+		ss << CGameData::getHeroData()->exp;
+		_heroExp->setString(ss.str());
+		break;
+	default:
+		break;
+	}
+}
+

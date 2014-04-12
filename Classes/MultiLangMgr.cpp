@@ -50,7 +50,7 @@ bool CMultiLangMgr::initMultiLangWithFile(const string& pszPlist)
 	return true;
 }
 
-string CMultiLangMgr::getStr(int nID)
+const string& CMultiLangMgr::getStr(int nID)
 {
 	return _strMap[nID];
 }

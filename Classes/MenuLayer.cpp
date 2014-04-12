@@ -1,6 +1,5 @@
 #include "MenuLayer.h"
-#include "MultiLangMgr.h"
-#include "stringdef.h"
+#include "GameData.h"
 
 USING_NS_CC;
 
@@ -36,8 +35,7 @@ bool CMenuLayer::init()
 		this->addChild(background);
 	}
 
-	std::string str = CMultiLangMgr::getInstance()->getStr(STR_GAME_LEVEL);
-	_levelTitle = LabelTTF::create(str, "Arial", 24);
+	_levelTitle = LabelTTF::create("0", "Arial", 24);
 	if (_levelTitle != NULL)
 	{
 		_levelTitle->setPosition(Point(sz.width/2, sz.height - _levelTitle->getContentSize().height));
@@ -47,8 +45,20 @@ bool CMenuLayer::init()
 	return true;
 }
 
-void CMenuLayer::setCurLevel(int level)
+void CMenuLayer::updateShow(THeroDataType type)
 {
-	std::string str = CMultiLangMgr::getInstance()->getStr(STR_GAME_LEVEL + level);
+	switch (type)
+	{
+	case ELv:
+		_levelTitle->setString(CGameData::getInstance()->getLevelName(CGameData::getHeroData()->lv));
+		break;
+	default:
+		break;
+	}
+}
+
+void CMenuLayer::showLevel()
+{
+	const std::string& str = CGameData::getInstance()->getLevelName(CGameData::getHeroData()->lv);
 	_levelTitle->setString(str);
 }

@@ -15,6 +15,8 @@ public:
 
     virtual bool init();
 
+	void updateShow(THeroDataType type);
+
 	void onKeyPressed(cocos2d::EventKeyboard::KeyCode keyCode, cocos2d::Event* event);
 	void onKeyReleased(cocos2d::EventKeyboard::KeyCode keyCode, cocos2d::Event* event);
     
@@ -28,8 +30,6 @@ private:
 	CHeroInfoLayer* _heroInfoLayer;
 	CKeyInfoLayer* _keyInfoLayer;
 	CMenuLayer* _menuLayer;
-
-	int _curLevel;
 };
 
 #endif // __MAINFRAME_LAYER_H__

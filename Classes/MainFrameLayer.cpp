@@ -11,7 +11,6 @@ CMainFrameLayer::CMainFrameLayer()
 	, _heroInfoLayer(NULL)
 	, _keyInfoLayer(NULL)
 	, _menuLayer(NULL)
-	, _curLevel(0)
 {
 }
 
@@ -30,12 +29,6 @@ bool CMainFrameLayer::init()
 
 	//cache
 	CCSpriteFrameCache::getInstance()->addSpriteFramesWithFile("texture/mt.plist");
-	//SpriteFrameCache::getInstance()->addSpriteFramesWithFile("texture/background.plist");
-	//SpriteFrameCache::getInstance()->addSpriteFramesWithFile("texture/door.plist");
-	//SpriteFrameCache::getInstance()->addSpriteFramesWithFile("texture/hero.plist");
-	//SpriteFrameCache::getInstance()->addSpriteFramesWithFile("texture/monster.plist");
-	//SpriteFrameCache::getInstance()->addSpriteFramesWithFile("texture/npc.plist");
-	//SpriteFrameCache::getInstance()->addSpriteFramesWithFile("texture/props.plist");
     
     Size visibleSize = Director::getInstance()->getVisibleSize();
     Point origin = Director::getInstance()->getVisibleOrigin();
@@ -95,22 +88,66 @@ bool CMainFrameLayer::init()
 
 	this->setKeyboardEnabled(true);
 
-	_gameLayer->setLevel(_curLevel);
+	_gameLayer->reInitMap(TInitMapType::EInitMap);
+	_menuLayer->showLevel();
 
     return true;
+}
+
+void CMainFrameLayer::updateShow(THeroDataType type)
+{
+	switch (type)
+	{
+	case ELevel:
+	case ELife:
+	case EATK:
+	case EDEF:
+	case EMoney:
+	case EExp:
+		_heroInfoLayer->updateShow(type);
+		break;
+	case EKeyYellow:
+	case EKeyBlue:
+	case EKeyRed:
+		_keyInfoLayer->updateShow(type);
+		break;
+	case ELv:
+		_menuLayer->updateShow(type);
+		break;
+	default:
+		break;
+	}
 }
 
 void CMainFrameLayer::onKeyPressed(EventKeyboard::KeyCode keyCode, Event* event)
 {
 	switch (keyCode)
 	{
+	case EventKeyboard::KeyCode::KEY_F1:
+		++CGameData::getHeroData()->lv;
+		_gameLayer->reInitMap(TInitMapType::EUpStairs);
+		_menuLayer->showLevel();
+		break;
+	case EventKeyboard::KeyCode::KEY_F2:
+		--CGameData::getHeroData()->lv;
+		_gameLayer->reInitMap(TInitMapType::EDownStairs);
+		_menuLayer->showLevel();
+		break;
 	case EventKeyboard::KeyCode::KEY_W:
-		++_curLevel;
-		_gameLayer->setLevel(_curLevel);
+	case EventKeyboard::KeyCode::KEY_UP_ARROW:
+		_gameLayer->MoveTo(EUp);
 		break;
 	case EventKeyboard::KeyCode::KEY_S:
-		--_curLevel;
-		_gameLayer->setLevel(_curLevel);
+	case EventKeyboard::KeyCode::KEY_DOWN_ARROW:
+		_gameLayer->MoveTo(EDown);
+		break;
+	case EventKeyboard::KeyCode::KEY_A:
+	case EventKeyboard::KeyCode::KEY_LEFT_ARROW:
+		_gameLayer->MoveTo(ELeft);
+		break;
+	case EventKeyboard::KeyCode::KEY_D:
+	case EventKeyboard::KeyCode::KEY_RIGHT_ARROW:
+		_gameLayer->MoveTo(ERight);
 		break;
 	default:
 		break;

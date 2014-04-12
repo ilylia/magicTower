@@ -2,6 +2,7 @@
 #define __MENU_LAYER_H__
 
 #include "cocos2d.h"
+#include "GameData.h"
 
 class CMenuLayer : public cocos2d::Layer
 {
@@ -10,7 +11,9 @@ public:
 
 	virtual bool init();
 
-	void setCurLevel(int level);
+	void updateShow(THeroDataType type);
+
+	void showLevel();
 
 	CREATE_FUNC(CMenuLayer);
 

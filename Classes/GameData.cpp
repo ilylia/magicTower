@@ -1,5 +1,7 @@
 #include "GameData.h"
 #include "cocos2d.h"
+#include "MultiLangMgr.h"
+#include "stringdef.h"
 
 //ÓÎÏ·Êý¾Ý
 //0 road
@@ -427,6 +429,7 @@ static int g_monsterDataMap[33][5] = {
 
 
 static CGameData* _sharedGameData = NULL;
+static SHeroData _sharedHeroData;
 
 CGameData* CGameData::getInstance()
 {
@@ -450,23 +453,33 @@ void CGameData::destroyInstance()
 	} while(false);
 }
 
+SHeroData* CGameData::getHeroData()
+{
+	return &_sharedHeroData;
+}
+
+int getValidLevel(int level)
+{
+	return ((level % 27) + 27) % 27;
+}
+
 const int* CGameData::getData(int level)
 {
-	if (level < 0 || level > 27)
-	{
-		return NULL;
-	}
+	return (const int*)g_gameMap[getValidLevel(level)];
+}
 
-	return (int*)g_gameMap[level];
+const std::string& CGameData::getLevelName(int level)
+{
+	return CMultiLangMgr::getInstance()->getStr(STR_GAME_LEVEL + getValidLevel(level));
 }
 
 TSpriteType CGameData::getSpriteType(int k)
 {
-	if (k >= 24 && k <= 28)
+	if ((k >= 24 && k <= 28) || k == 22)
 	{
 		return ESpriteNpc;
 	}
-	else if (k >= 40 && k <= 70)
+	else if ((k >= 40 && k <= 70) || (k >= 181 && k <= 189) || (k >= 191 && k <= 199))
 	{
 		return ESpriteMonster;
 	}

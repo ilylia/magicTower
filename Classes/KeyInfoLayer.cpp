@@ -1,6 +1,9 @@
 #include "KeyInfoLayer.h"
 #include "MultiLangMgr.h"
 #include "stringdef.h"
+#include <iosfwd>
+
+using namespace std;
 
 USING_NS_CC;
 
@@ -99,38 +102,24 @@ bool CKeyInfoLayer::init()
 	return true;
 }
 
-void CKeyInfoLayer::setYellowKeyNum(int numKey)
+void CKeyInfoLayer::updateShow(THeroDataType type)
 {
-	if (_numKeyYellow == NULL)
+	stringstream ss;
+	switch (type)
 	{
-		return;
+	case EKeyYellow:
+		ss << CGameData::getHeroData()->numYellow;
+		_numKeyYellow->setString(ss.str());
+		break;
+	case EKeyBlue:
+		ss << CGameData::getHeroData()->numBlue;
+		_numKeyBlue->setString(ss.str());
+		break;
+	case EKeyRed:
+		ss << CGameData::getHeroData()->numRed;
+		_numKeyRed->setString(ss.str());
+		break;
+	default:
+		break;
 	}
-
-	char cnum[4];
-	_itoa(numKey, cnum, 10);
-	_numKeyYellow->setString(cnum);
-}
-
-void CKeyInfoLayer::setBlueKeyNum(int numKey)
-{
-	if (_numKeyBlue == NULL)
-	{
-		return;
-	}
-
-	char cnum[4];
-	_itoa(numKey, cnum, 10);
-	_numKeyBlue->setString(cnum);
-}
-
-void CKeyInfoLayer::setRedKeyNum(int numKey)
-{
-	if (_numKeyRed == NULL)
-	{
-		return;
-	}
-
-	char cnum[4];
-	_itoa(numKey, cnum, 10);
-	_numKeyRed->setString(cnum);
 }
