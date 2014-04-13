@@ -473,6 +473,36 @@ const std::string& CGameData::getLevelName(int level)
 	return CMultiLangMgr::getInstance()->getStr(STR_GAME_LEVEL + getValidLevel(level));
 }
 
+int getMonsterID(int k)
+{
+	if (k >= 40 && k <= 70)
+	{
+		return k - 40;
+	}
+	else if (k == 188)
+	{
+		return 31;
+	}
+	else if (k == 198)
+	{
+		return 32;
+	}
+	else
+	{
+		return -1;
+	}
+}
+
+const int* CGameData::getMonsterData(int k)
+{
+	int monsterID = getMonsterID(k);
+	if (monsterID < 0 || monsterID > 32)
+	{
+		return NULL;
+	}
+	return (const int*)g_monsterDataMap[monsterID];
+}
+
 TSpriteType CGameData::getSpriteType(int k)
 {
 	if ((k >= 24 && k <= 28) || k == 22)
@@ -483,7 +513,7 @@ TSpriteType CGameData::getSpriteType(int k)
 	{
 		return ESpriteMonster;
 	}
-	else if ((k >= 6 && k<=12) || (k >= 30 && k <= 39) || (k >= 71 && k <= 80) || (k >= 201 && k <= 203))
+	else if ((k >= 2 && k<=5) || (k >= 6 && k<=12) || (k >= 30 && k <= 39) || (k >= 71 && k <= 80) || (k >= 201 && k <= 203))
 	{
 		return ESpriteProps;
 	}

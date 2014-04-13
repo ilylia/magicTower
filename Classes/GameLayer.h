@@ -28,7 +28,7 @@ public:
 
 	bool GetProps(int k);
 
-	bool CanFightToMonster(int k);
+	int getMonsterDamage(int k);
 	bool FightTpMonster(int k);
 
     CREATE_FUNC(CGameLayer);

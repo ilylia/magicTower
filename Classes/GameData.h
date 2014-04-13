@@ -81,6 +81,8 @@ public:
 	const int* getData(int level);
 	const std::string& getLevelName(int level);
 
+	const int* getMonsterData(int k);
+
 	TSpriteType getSpriteType(int k);
 
 private:

@@ -52,7 +52,12 @@ void CGameLayer::reInitMap(TInitMapType type)
 			int k = gameData[i*11+j];
 
 			ss << "mt_";
-			if (k < 10)
+			if (CGameData::getHeroData()->gotMT[lv][j][i] == 1)
+			{
+				k = 0;
+				ss << "00";
+			}
+			else if (k < 10)
 			{
 				ss << "0" << k;
 			}
@@ -195,6 +200,10 @@ void CGameLayer::MoveTo(TDirectionType dir)
 	}
 
 	int kNew = gameData[yNew * 11 + xNew];
+	if (CGameData::getHeroData()->gotMT[lv][xNew][yNew] == 1)
+	{
+		kNew = 0;
+	}
 	if (kNew == 1 || kNew == 19 || kNew == 20 || kNew == 29)
 	{
 		return;
@@ -203,30 +212,63 @@ void CGameLayer::MoveTo(TDirectionType dir)
 	TSpriteType type = CGameData::getInstance()->getSpriteType(kNew);
 	if (type == ESpriteNpc)
 	{
-		TalkToNPC(kNew);
+		if (TalkToNPC(kNew))
+		{
+			CGameData::getHeroData()->gotMT[lv][xNew][yNew] = 1;
+		}
+		return;
+	}
+	else if (type == ESpriteProps)
+	{
+		if (GetProps(kNew))
+		{
+			CGameData::getHeroData()->gotMT[lv][xNew][yNew] = 1;
+		}
 		return;
 	}
 	else if (type == ESpriteMonster)
 	{
+		if (FightTpMonster(kNew))
+		{
+			CGameData::getHeroData()->gotMT[lv][xNew][yNew] = 1;
+		}
+		return;
 	}
 
 	int k = gameData[y * 11 + x];
+
+	if (kNew == 13)
+	{
+		if (k == 98)
+		{
+			//level++
+			++lv;
+			reInitMap(EUpStairs);
+			return;
+		}
+		else
+		{
+			return;
+		}
+	}
+	else if (kNew == 14)
+	{
+		if (k == 97)
+		{
+			//level--
+			--lv;
+			reInitMap(EDownStairs);
+			return;
+		}
+		else
+		{
+			return;
+		}
+	}
+
 	x = xNew;
 	y = yNew;
 	_hero->setPosition(32*x + 16, 32*(10-y) + 16);
-
-	if (k == 98 && kNew == 13)
-	{
-		//level++
-		++lv;
-		reInitMap(EUpStairs);
-	}
-	else if (k == 97 && kNew == 14)
-	{
-		//level--
-		--lv;
-		reInitMap(EDownStairs);
-	}
 }
 
 bool CGameLayer::TalkToNPC(int k)
@@ -239,6 +281,35 @@ bool CGameLayer::GetProps(int k)
 	CMainFrameLayer* mainFrame = (CMainFrameLayer*)this->getParent();
 	switch (k)
 	{
+	case 2:
+		if (CGameData::getHeroData()->numYellow == 0)
+		{
+			return false;
+		}
+		--CGameData::getHeroData()->numYellow;
+		mainFrame->updateShow(EKeyYellow);
+		break;
+	case 3:
+		if (CGameData::getHeroData()->numBlue == 0)
+		{
+			return false;
+		}
+		--CGameData::getHeroData()->numBlue;
+		mainFrame->updateShow(EKeyBlue);
+		break;
+	case 4:
+		if (CGameData::getHeroData()->numRed == 0)
+		{
+			return false;
+		}
+		--CGameData::getHeroData()->numRed;
+		mainFrame->updateShow(EKeyRed);
+		break;
+	//case 5:
+	//	{
+	//		return false;
+	//	}
+	//	break;
 	case 6:
 		++CGameData::getHeroData()->numYellow;
 		mainFrame->updateShow(EKeyYellow);
@@ -346,12 +417,77 @@ bool CGameLayer::GetProps(int k)
 	return true;
 }
 
-bool CGameLayer::CanFightToMonster(int k)
+int CGameLayer::getMonsterDamage(int k)
 {
-	return false;
+	const int* monsterData = CGameData::getInstance()->getMonsterData(k);
+	if (monsterData == NULL)
+	{
+		return -1;
+	}
+
+	const int& mLife = monsterData[0];
+	const int& mATK = monsterData[1];
+	const int& mDEF = monsterData[2];
+
+	const int& life = CGameData::getHeroData()->life;
+	const int& atk = CGameData::getHeroData()->atk;
+	const int& def = CGameData::getHeroData()->def;
+
+	if (atk <= mDEF)
+	{
+		return -1;
+	}
+
+	int round = mLife / (atk - mDEF);
+	int damage = round * (mATK - def);
+	if (damage >= life)
+	{
+		return -1;
+	}
+
+	return damage;
 }
 
 bool CGameLayer::FightTpMonster(int k)
 {
-	return false;
+	const int* monsterData = CGameData::getInstance()->getMonsterData(k);
+	if (monsterData == NULL)
+	{
+		return false;
+	}
+
+	const int& mLife = monsterData[0];
+	const int& mATK = monsterData[1];
+	const int& mDEF = monsterData[2];
+	const int& mMoney = monsterData[3];
+	const int& mExp = monsterData[4];
+
+	int& life = CGameData::getHeroData()->life;
+	const int& atk = CGameData::getHeroData()->atk;
+	const int& def = CGameData::getHeroData()->def;
+
+	if (atk <= mDEF)
+	{
+		return false;
+	}
+
+	int round = mLife / (atk - mDEF);
+	int damage = round * (mATK - def);
+	if (damage >= life)
+	{
+		return false;
+	}
+
+	int& money = CGameData::getHeroData()->money;
+	int& exp = CGameData::getHeroData()->exp;
+	life -= damage;
+	money += mMoney;
+	exp += mExp;
+
+	CMainFrameLayer* mainFrame = (CMainFrameLayer*)this->getParent();
+	mainFrame->updateShow(ELife);
+	mainFrame->updateShow(EMoney);
+	mainFrame->updateShow(EExp);
+
+	return true;
 }
