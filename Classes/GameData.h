@@ -3,6 +3,7 @@
 
 #include <string>
 #include <map>
+#include <vector>
 
 enum TSpriteType
 {
@@ -57,6 +58,7 @@ struct SHeroData
 	TDirectionType dir;
 
 	std::map<int, std::map<int, std::map<int, int> > > gotMT; // <lv, <x, <y, 1>>>
+	std::vector<int> gotTalk; //
 
 	SHeroData()
 		: level(1), life(1000), atk(10), def(10), money(0), exp(0)

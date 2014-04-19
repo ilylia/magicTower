@@ -26,6 +26,10 @@ public:
 
 	virtual bool init();
 
+	void talkTo(int k);
+
+	void talkNext();
+
 	CREATE_FUNC(CTalkingLayer);
 
 private:

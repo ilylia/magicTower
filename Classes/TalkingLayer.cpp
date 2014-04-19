@@ -60,7 +60,7 @@ void CTalkingLayer::CSentenceLayer::setContent(string talkerHead, string talkerN
 	LabelTTF* content = LabelTTF::create(talkContent, "Arial", 20);
 	if (content != NULL)
 	{
-		content->setAnchorPoint(ccp(0, 1));
+		content->setAnchorPoint(Point(0, 1));
 		content->setPosition(36, 32);
 		this->addChild(content);
 	}
@@ -86,7 +86,7 @@ bool CTalkingLayer::init()
 	_thisSentence = CSentenceLayer::create();
 	if (_thisSentence != NULL)
 	{
-		_thisSentence->setAnchorPoint(ccp(1, 0));
+		_thisSentence->setAnchorPoint(Point(1, 0));
 		_thisSentence->setPosition(256, 0);
 		_thisSentence->setVisible(false);
 		this->addChild(_thisSentence);
@@ -95,11 +95,23 @@ bool CTalkingLayer::init()
 	_thatSentence = CSentenceLayer::create();
 	if (_thatSentence != NULL)
 	{
-		_thatSentence->setAnchorPoint(ccp(0, 1));
+		_thatSentence->setAnchorPoint(Point(0, 1));
 		_thatSentence->setPosition(0, 256);
 		_thatSentence->setVisible(false);
 		this->addChild(_thatSentence);
 	}
 
 	return true;
+}
+
+void CTalkingLayer::talkTo(int k)
+{
+	if (k == 24)
+	{
+	}
+}
+
+void CTalkingLayer::talkNext()
+{
+
 }

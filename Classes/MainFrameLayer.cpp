@@ -86,7 +86,18 @@ bool CMainFrameLayer::init()
 	_gameLayer->setPosition(192, 32);
 	this->addChild(_gameLayer);
 
-	this->setKeyboardEnabled(true);
+	//this->setKeyboardEnabled(true);
+	EventListenerKeyboard* keyboard_listener = EventListenerKeyboard::create();
+	keyboard_listener->onKeyPressed = CC_CALLBACK_2(CMainFrameLayer::onKeyPressed, this);
+	keyboard_listener->onKeyReleased = CC_CALLBACK_2(CMainFrameLayer::onKeyReleased, this);
+	_eventDispatcher->addEventListenerWithSceneGraphPriority(keyboard_listener, this);
+
+	EventListenerTouchOneByOne* touch_listener = EventListenerTouchOneByOne::create();
+	touch_listener->setSwallowTouches(true);
+	touch_listener->onTouchBegan = CC_CALLBACK_2(CMainFrameLayer::onTouchBegan, this);
+	touch_listener->onTouchMoved = CC_CALLBACK_2(CMainFrameLayer::onTouchMoved, this);
+	touch_listener->onTouchEnded = CC_CALLBACK_2(CMainFrameLayer::onTouchEnded, this);
+	_eventDispatcher->addEventListenerWithSceneGraphPriority(touch_listener, this);
 
 	_gameLayer->reInitMap(TInitMapType::EInitMap);
 	_menuLayer->showLevel();
@@ -149,12 +160,29 @@ void CMainFrameLayer::onKeyPressed(EventKeyboard::KeyCode keyCode, Event* event)
 	case EventKeyboard::KeyCode::KEY_RIGHT_ARROW:
 		_gameLayer->MoveTo(ERight);
 		break;
+	case EventKeyboard::KeyCode::KEY_SPACE:
+		_gameLayer->TalkNext();
 	default:
 		break;
 	}
 }
 
 void CMainFrameLayer::onKeyReleased(EventKeyboard::KeyCode keyCode, Event* event)
+{
+
+}
+
+bool CMainFrameLayer::onTouchBegan(cocos2d::Touch* touch, cocos2d::Event* event)
+{
+	return false;
+}
+
+void CMainFrameLayer::onTouchMoved(cocos2d::Touch* touch, cocos2d::Event* event)
+{
+
+}
+
+void CMainFrameLayer::onTouchEnded(cocos2d::Touch* touch, cocos2d::Event* event)
 {
 
 }

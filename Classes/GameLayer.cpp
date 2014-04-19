@@ -10,6 +10,7 @@ USING_NS_CC;
 
 CGameLayer::CGameLayer()
 	: _hero(NULL)
+	, _talkingLayer(NULL)
 {
 
 }
@@ -24,9 +25,21 @@ bool CGameLayer::init()
 
 	Size sz(352, 352);
 	this->setContentSize(sz);
+
+	_talkingLayer = CTalkingLayer::create();
+	if (_talkingLayer != NULL)
+	{
+		_talkingLayer->setVisible(false);
+		this->addChild(_talkingLayer);
+	}
     
     return true;
 }
+
+//bool CGameLayer::HandleInput(cocos2d::Event* ev)
+//{
+//
+//}
 
 void CGameLayer::reInitMap(TInitMapType type)
 {
@@ -490,4 +503,14 @@ bool CGameLayer::FightTpMonster(int k)
 	mainFrame->updateShow(EExp);
 
 	return true;
+}
+
+void CGameLayer::TalkNext()
+{
+	if (_talkingLayer == NULL || !_talkingLayer->isVisible())
+	{
+		return;
+	}
+
+	_talkingLayer->talkNext();
 }
